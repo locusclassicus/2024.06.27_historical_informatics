@@ -1,25 +1,217 @@
 ---
-title: "index"
-format: revealjs
+title: "R как инструмент </br> полного цикла"
+author: Ольга Алиева
+execute:
+  echo: true
+df-print: paged
+date: 27 06 2024
+format: 
+  revealjs:
+    theme: style.scss
+    incremental: true
+    scrollable: true
 ---
 
-## Quarto
+## Что такое R?
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+:::: {.columns}
+::: {.column width="80%"}
+- R - это язык программирования и рабочая среда с открытым исходным ходом.  
+- Изначально создавался для статистических вычислений.
+- Но сегодня умеет все (или почти все): 20928 открытых [пакетов](https://cran.r-project.org/web/packages/) для работы.
+- Кросс-платформенный. 
+- Своя среда разработки. 
+:::
 
-## Bullets
+:::{.column width="20%"}
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/207px-R_logo.svg.png)
+:::
+::::
 
-When you click the **Render** button a document will be generated that includes:
+## 10 причин полюбить R
 
--   Content authored with markdown
--   Output from executable code
+(@) мощные инструменты для работы с графикой
+(@) полный набор методов компьютерного анализа текста
+(@) импорт из файлов любого формата
+(@) лучшая на свете среда разработки (и облако)
+(@) средства для презентации и публикации исследований
+(@) дружелюбное коммьюнити и прекрасные учебники (в открытом доступе)
+(@) инструменты для статистического анализа
+(@) возможности для машинного и глубокого обучения
+(@) семейство пакетов tidyverse, которые умеют все
+(@) интерактивные приложения shiny
 
-## Code
+## Графика
 
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+![](images/ggplot.png)
 
-```{r}
-1 + 1
+Сайт: <https://r-graph-gallery.com/>
+
+---
+
+![](images/plotly.png)
+Сайт: <https://plotly.com/r/>
+
+---
+
+![](images/leaflet.png)
+
+Сайт: <https://r-graph-gallery.com/map.html>
+
+---
+
+![](https://emilhvitfeldt.com/post/ggpage-version-0-2-0-showcase/unnamed-chunk-8-1.png)
+
+Сайт: <https://emilhvitfeldt.com/post/ggpage-version-0-2-0-showcase/>
+
+---
+
+![](https://r-charts.com/images/gif/ggcats.gif)
+
+Сайт: <https://r-charts.com/miscellaneous/ggcats/>
+
+---
+
+![](https://ewenme.github.io/ghibli/reference/figures/spirited-pal.jpg)
+Сайт: <https://ewenme.github.io/ghibli/>
+
+## Анализ текста
+
+![](https://smltar.com/diagram-files/tokenization-black-box.png)
+
+Источник: <https://smltar.com/tokenization>
+
+---
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# |cache: true
+library(udpipe)
+library(dplyr)
+liza <- readLines(con = "karamzin_liza.txt")
+russian_syntagrus <- udpipe_load_model(file = "russian-syntagrus-ud-2.5-191206.udpipe")
+liza_ann <- udpipe_annotate(russian_syntagrus, liza)
 ```
+
+```{r echo=FALSE, message=FALSE}
+liza_df <- as_tibble(liza_ann) |> 
+  select(-paragraph_id, -sentence, -xpos, -doc_id, -sentence_id)
+liza_df
+```
+
+---
+
+![](https://locusclassicus.github.io/text_analysis_2023/_main_files/figure-html/unnamed-chunk-452-1.png)
+
+Источник: <https://locusclassicus.github.io/text_analysis_2023/>
+
+--- 
+
+![](https://locusclassicus.github.io/text_analysis_2023/_main_files/figure-html/unnamed-chunk-398-1.png)
+
+Источник: <https://locusclassicus.github.io/text_analysis_2023/>
+
+---
+
+![](https://locusclassicus.github.io/text_analysis_2023/_main_files/figure-html/unnamed-chunk-547-1.png)
+
+Данные: <https://rdrr.io/cran/stylo/>
+
+---
+
+![](https://sysblok.ru/wp-content/uploads/2024/01/image1.png)
+
+Источник: <https://sysblok.ru/metascience/tancy-jeros-i-zachatie-o-chem-pisali-platonovskie-issledovanija-za-poslednie-10-let/>
+
+---
+
+![](images/word2vec.png)
+
+Источник: <https://agricolamz.github.io/2024.06.02_text_analysis/>
+
+## Импорт
+
+- табличные данные: csv, xls (xlsx), etc.
+- тексты: txt, docx, pdf, etc.
+- изображения: png, jpg, etc.
+- cтруктурированные данные: json, xml, html, etc.
+- "обертки" для онлайн библиотек
+
+---
+
+![](https://posit.co/wp-content/uploads/2014/11/052922_Blog_rvest.jpg)
+
+Источник: <https://posit.co/blog/rvest-easy-web-scraping-with-r/>
+
+## RStudio
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/RStudio_IDE_screenshot.png/1920px-RStudio_IDE_screenshot.png)
+
+И облако: <https://posit.cloud/>
+
+## Презентация
+
+- веб-страница или сайт: <https://locusclassicus.github.io/latin_exercitia/index.html> 
+- презентациия: <https://quarto.org/docs/presentations/revealjs/demo/>
+- книга: <https://www.tidytextmining.com/index.html>
+
+---
+
+![](images/revealjs.png)
+
+Источник: <https://emilhvitfeldt.github.io/quarto-revealjs-cinco-de-mayo/#/theme-title3>
+
+## Коммьюнити и книги
+
+![](images/julia.png)
+<https://juliasilge.com/>
+
+---
+
+::: {layout-ncol=3}
+
+![](https://r4ds.hadley.nz/cover.jpg)
+
+![](https://www.tidytextmining.com/images/cover.png)
+
+![](https://www.tmwr.org/images/cover.png)
+
+:::
+
+---
+
+![](images/openedu.png)
+Сайт: <https://openedu.ru/course/hse/RLING/>
+
+## Статистика
+
+![](images/stat.jpg)
+
+## Машинное обучение
+
+![](images/tidymodels.png)
+Сайт: <https://www.tidymodels.org/>
+
+## Tidyverse
+
+![](images/tidyverse.png)
+
+## Shiny
+
+::: {layout-ncol=2}
+
+![](images/school1700.png)
+
+![](images/school1790.png)
+:::
+
+
+Сайт: <https://concept-lab.lib.cam.ac.uk/shiny/viewers/viewer-current/>
+
+---
+
+![](images/qr.png)
+
+Подписывайтесь: <https://t.me/rantiquity>
+
 
 
