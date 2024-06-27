@@ -83,6 +83,8 @@ format:
 
 ---
 
+### Частеречная разметка
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 # |cache: true
 library(udpipe)
@@ -151,7 +153,7 @@ liza_df
 ## Презентация
 
 - веб-страница или сайт: <https://locusclassicus.github.io/latin_exercitia/index.html> 
-- презентациия: <https://quarto.org/docs/presentations/revealjs/demo/>
+- презентация: <https://quarto.org/docs/presentations/revealjs/demo/>
 - книга: <https://www.tidytextmining.com/index.html>
 
 ---
@@ -182,6 +184,10 @@ liza_df
 ![](images/openedu.png)
 Сайт: <https://openedu.ru/course/hse/RLING/>
 
+---
+
+![](images/moroz.jpg)
+
 ## Статистика
 
 ![](images/stat.jpg)
@@ -209,9 +215,9 @@ liza_df
 
 ---
 
+## Спасибо за внимание!
+
+
 ![](images/qr.png)
 
 Подписывайтесь: <https://t.me/rantiquity>
-
-
-
